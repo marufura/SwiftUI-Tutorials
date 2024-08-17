@@ -7,18 +7,16 @@
 
 import SwiftUI
 
+
 struct CategoryHome: View {
     @Environment(ModelData.self) var modelData
     @State private var showingProfile = false
-    
+
+
     var body: some View {
         NavigationSplitView {
             List {
-                modelData.features[0].image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 200)
-                    .clipped()
+                PageView(pages: modelData.features.map { FeatureCard(landmark: $0) })
                     .listRowInsets(EdgeInsets())
 
 
@@ -45,6 +43,7 @@ struct CategoryHome: View {
         }
     }
 }
+
 
 #Preview {
     CategoryHome()
